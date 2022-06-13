@@ -5,7 +5,7 @@ const mockRequest = supertest(app);
 
 
 const { db } = require('../src/models/index');
-const autho = require('../src/authorization/auth');
+const autho= require('../src/authorization/auth');
 
 
 beforeAll(async () => {
@@ -18,14 +18,14 @@ describe('Web server', () => {
     it('POST to /signup to create a new user', async () => {
         const response = await mockRequest.post('/signup').send({
             name: "ahmad",
-            password: "12abc"
+            password: "abcd"
         });
         expect(response.status).toBe(201);
       });
-
+ 
 
       it('POST to /signin to login as a user (use basic auth)', async () => {
-        const response = await mockRequest.post('/signin').auth('ahmad','12abc');
+        const response = await mockRequest.post('/signin').auth('ahmad','abcd');
         expect(response.status).toBe(200);
     });
     it('Sign in with wrong password', async () => {
