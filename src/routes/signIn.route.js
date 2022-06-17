@@ -7,9 +7,9 @@ const base64 = require('base-64')
 
 const { users } = require('../models/index');
 const signInRoute = express.Router();
-const autho = require('../authorization/auth');
+const basicAuth = require('../authorization/basicAuth');
 
-signInRoute.post('/signin', autho, async (req, res) => {
+signInRoute.post('/signin', basicAuth, async (req, res) => {
 
     let basicHeaderParts = req.headers.authorization.split(" ");
     let encoded = basicHeaderParts[1];
@@ -20,11 +20,12 @@ signInRoute.post('/signin', autho, async (req, res) => {
     let password = decoded.split(":")[1];
 
     try {
-        const user = await users.findOne({ where: { name: username } });
+        const user = await users.findOne({ where: { username: username } });
         const inValid = await bcrypt.compare(password, user.password);
         if (inValid) {
             res.status(200).json({
-                user
+                message: 'Successfully signed in',
+                user: `The user ${user.username}`,
             });
         } else {
             res.status(500).send("wrong username or password")
