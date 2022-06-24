@@ -2,7 +2,7 @@
 
 require ('dotenv').config();
 
-const PORT = process.env.PORT || 3000;
+let PORT = process.env.PORT || 3070;
 
 const express = require('express');
 
@@ -14,18 +14,20 @@ const errorHandler = require('./error-handlers/505');
 const app = express();
 app.use(express.json());
 
-app.get("/",(req,res)=>{
-res.send("Welcome home page");
-});
 
 app.use(signInRoute);
 app.use(signUpRoute);
 app.use('*',notFoundPage);
 app.use(errorHandler);
 
-function start(PORT){
-    app.listen(PORT,()=>{
-        console.log(`Server is listing now on Port : ${PORT}`)
+app.get("/",(req,res)=>{
+    res.send("Welcome home page");
+    });
+    
+
+function start(port){
+    app.listen(port,()=>{
+        console.log(`Server is listing now on Port : ${port}`)
     });
 }
 

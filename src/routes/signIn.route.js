@@ -16,8 +16,9 @@ signInRoute.post('/signin', basicAuth, async (req, res) => {
 
     let decoded = base64.decode(encoded);
 
-    let username = decoded.split(":")[0];
-    let password = decoded.split(":")[1];
+    let [username, password] = decoded.split(':');
+    // let username = decoded.split(":")[0];
+    // let password = decoded.split(":")[1];
 
     try {
         const user = await users.findOne({ where: { username: username } });
@@ -27,11 +28,9 @@ signInRoute.post('/signin', basicAuth, async (req, res) => {
                 message: 'Successfully signed in',
                 user: `The user ${user.username}`,
             });
-        } else {
-            res.status(500).send("wrong username or password")
         }
     } catch (e) {
-        res.status(500).send("app error")
+        res.status(500).send("app error");
     }
 });
 module.exports = signInRoute;

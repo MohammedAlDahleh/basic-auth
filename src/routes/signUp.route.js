@@ -12,7 +12,7 @@ signUpRouter.post('/signup', async (req,res)=>{
      req.body.password = await bcrypt.hash(req.body.password,10);
      const record = await users.create(req.body);
      res.status(201).json(record);
-    }  catch(e) { res.status(500).send('try again'); }
+    }  catch(e) { res.status(403).send('cannot create user ,try again'); }
 });
 
 module.exports = signUpRouter;
