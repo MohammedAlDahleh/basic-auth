@@ -2,7 +2,7 @@
 
 require ('dotenv').config();
 
-let PORT = process.env.PORT || 3000;
+let PORT = process.env.PORT || 3070;
 const server = require('./src/server');
 
 const {db} = require('./src/models/index');
@@ -10,5 +10,7 @@ const {db} = require('./src/models/index');
 db.sync().then(()=>{
     server.start(PORT)
 })
-.catch(console.error);
-
+.catch(err => {
+    console.log(err);
+  }
+  );
