@@ -21,7 +21,6 @@
   "bugs": {
     "url": "https://github.com/MohammedAlDahleh/basic-auth/issues"
   },
-  "homepage": "https://github.com/MohammedAlDahleh/basic-auth#readme",
   "dependencies": {
     "base-64": "^1.0.0",
     "bcrypt": "^5.0.1",
