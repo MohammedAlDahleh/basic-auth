@@ -1,5 +1,5 @@
 # basic-auth
-![basic-athu](./basic-athu.PNG)
+![basic-athu]()
 
 
 * [Pull-Requset](https://github.com/MohammedAlDahleh/basic-auth/pull/6)<br>
